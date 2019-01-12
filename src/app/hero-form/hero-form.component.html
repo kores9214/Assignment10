@@ -1,0 +1,114 @@
+<div class="container">
+  <div [hidden]="submitted">
+    <h1 style="opacity:0">Employee Form</h1>
+    <form (ngSubmit)="onSubmit()" #heroForm="ngForm">
+      <label for="name">Employee's Name</label>
+      <div class="form-group row">
+        <div class="col-md-6 mb-3">
+            <input type="text" class="form-control" id="name"
+               required
+               [(ngModel)]="model.name" name="name"
+               #name="ngModel">
+              
+              <label for="validationCustom01">First name</label>
+        </div>
+        <div class="col-md-6 mb-3">
+          <input type="text" class="form-control" id="lname"
+             required
+             [(ngModel)]="model.lname" name="lname"
+             #lname="ngModel">
+          <label for="validationCustom02">Last name</label>
+      </div>
+      </div>
+
+      <div class="form-group">
+        <label for="eTitle">Employee's Title</label>
+        <input type="text" class="form-control" id="eTitle"
+               [(ngModel)]="model.eTitle" name="eTitle">
+      </div>
+
+      <div class="form-group">
+        <label for="eDept">Employee's Department</label>
+        <select class="form-control" id="eDept"
+                required
+                [(ngModel)]="model.eDept" name="eDept"
+                #eDept="ngModel">
+          <option *ngFor="let pow of eDepts" [value]="pow">{{pow}}</option>
+        </select>
+      </div>
+
+      <div class="form-gropu">
+          <div class="col-md-8"> 
+              <label class="radio-inline" *ngFor="let rankI of ranks" for="Gender-0">
+                <input type="radio" name="rank" value="1"
+                 [value]="rank">
+               {{rankI}}
+              </label>
+            </div>
+        </div>
+
+        
+      <div class="form-group">
+          <label for="rankInfo">Please go into more detail on why you chose this ranking</label>
+          <textarea type="text" class="form-control" id="rankInfo"
+                 [(ngModel)]="model.rankInfo" name="rankInfo">
+          </textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="sname">Supervisor's Name</label>
+            <textarea type="text" class="form-control" id="sname"
+                   [(ngModel)]="model.sname" name="sname">
+            </textarea>
+          </div>
+
+      <button type="submit" class="btn btn-primary" [disabled]="!heroForm.form.valid">Submit</button>
+      
+  </form>
+  </div>
+
+  
+  <div [hidden]="!submitted">
+    <h2>You submitted the following:</h2>
+    <div class="row">
+      <div class="col-xs-3">First Name  :</div>
+      <div class="col-xs-9">{{ model.name }}</div>
+    </div>
+    <div class="row">
+        <div class="col-xs-3">last Name  :</div>
+        <div class="col-xs-9">{{ model.lname }}</div>
+      </div>
+    <div class="row">
+      <div class="col-xs-3">Employee's Title  :</div>
+      <div class="col-xs-9">{{ model.eTitle }}</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3">Employee's Department  :</div>
+      <div class="col-xs-9">{{ model.eDept }}</div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-3">Rank Info  :</div>
+        <div class="col-xs-9">{{ model.rank }}</div>
+      </div>
+    <div class="row">
+        <div class="col-xs-3">Employee's Ranking Info  :</div>
+        <div class="col-xs-9">{{ model.rankInfo }}</div>
+      </div>
+      <div class="row">
+          <div class="col-xs-3">Supervisor's Name  :</div>
+          <div class="col-xs-9">{{ model.sname }}</div>
+        </div>
+    <br>
+  </div>
+</div>
+
+<style>
+  .no-style .ng-valid {
+  border-left: 1px  solid #CCC
+}
+
+  .no-style .ng-invalid {
+  border-left: 1px  solid #CCC
+}
+</style>
